@@ -1,0 +1,19 @@
+package org.zerock.domain;
+
+import lombok.Data;
+import lombok.ToString;
+
+@Data
+@ToString(exclude={"val3"})
+public class SampleVO {
+	
+	// @Data
+	// 위 어노테이션을 설정하면 자동으로 모든 속성에 대해 getter/setter, toString() 역시 작성된다.
+	
+	// @ToString(exclude={"val3"})
+	// 위 어노테이션에 exclude를 설정하면 toString 출력 시 val3이라는 속성은 제외한다.
+	
+	private String val1;
+	private String val2;
+	private String val3;
+}
