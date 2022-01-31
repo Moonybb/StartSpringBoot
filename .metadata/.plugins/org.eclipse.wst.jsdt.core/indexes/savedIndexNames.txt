@@ -1,6 +1,0 @@
-INDEX VERSION 1.4+/Users/moony/Desktop/Moony/workspace/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
-877652965.index
-1283584005.index
-3532284194.index
-1129237728.index
-2798491674.index
