@@ -1,5 +1,8 @@
 package org.zerock;
 
+
+import java.util.Collection;
+
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,4 +35,38 @@ class Boot03ApplicationTests {
 		}
 	}
 
+	@Test
+	public void testByTitle() {
+		
+		/* before Java 8 */
+//		List<Board> list = repo.findBoardByTitle("제목..177");
+//		
+//		for(int i=0; i<list.size(); i++) {
+//			System.out.println(list.get(i));
+//		}
+		
+		
+		/* Java 8 */
+		repo.findBoardByTitle("제목..177")
+		.forEach(board -> System.out.println(board));
+		
+	}
+	
+	@Test
+	public void testByWriter() {
+		
+		Collection<Board> results = repo.findByWriter("user00");
+		
+		results.forEach(
+			board -> System.out.println(board)
+		);
+	}
+	
+	@Test
+	public void testByWriterContaining() {
+		
+		Collection<Board> results = repo.findByWriterContaining("05");
+		
+		results.forEach(board -> System.out.println(board));
+	}
 }
