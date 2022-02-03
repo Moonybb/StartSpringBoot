@@ -14,4 +14,10 @@ public interface BoardRepository extends CrudRepository<Board, Long>{
 	
 	// 작성자에 대한 like % 키워드 %
 	public Collection<Board> findByWriterContaining(String writer);
+	
+	// OR 조건의 처리
+	public Collection<Board> findByTitleContainingOrContentContaining(String title, String content);
+
+	// title LIKE % ? % AMD BNO > ?
+	public Collection<Board> findByTitleContainingAndBnoGreaterThan(String keywoard, Long num);
 }

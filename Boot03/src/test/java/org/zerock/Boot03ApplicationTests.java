@@ -69,4 +69,10 @@ class Boot03ApplicationTests {
 		
 		results.forEach(board -> System.out.println(board));
 	}
+	
+	@Test
+	public void testByTitleAndBno() {
+		
+		Collection<Board> results = repo.findByTitleContainingAndBnoGreaterThan("5", 50L);
+	}
 }
