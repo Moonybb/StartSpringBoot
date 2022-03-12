@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.zerock.domain.Board;
 import org.zerock.persistence.BoardRepository;
@@ -74,6 +76,32 @@ class Boot03ApplicationTests {
 	public void testByTitleAndBno() {
 		
 		Collection<Board> results = repo.findByTitleContainingAndBnoGreaterThan("5", 50L);
+		
+		results.forEach(board -> System.out.println(board));
+	}
+	
+	@Test
+	public void testBnOrderBy() {
+		Collection<Board> results = 
+				repo.findByBnoGreaterThanOrderByBnoDesc(90L);
+		
+		results.forEach(board -> System.out.println(board));
+	}
+	
+	@Test
+	public void testBnoOrderByPaging() {
+		
+		/*-------------------------------------------------------------
+		 * Pageable 인터페이스에는 여러 메소드가 존재하기 때문에 이를 구현하는 대신에 
+		 * PageReqeust 클래스를 이용하는 것이 편리합니다. PageReqeust는 데이터의 수를 지정하는 방식입니다.
+		 * 
+		 * Pageable paging = PageRequest.of(0, 10);
+		 * -> 0(첫번째 페이지) 이고 10건의 데이터를 가져오도록 설정
+		 *------------------------------------------------------------- */
+		
+		Pageable paging = PageRequest.of(0, 10);
+		
+		Collection<Board> results = repo.findByBnoGreaterThanOrderByBnoDesc(0L, paging);
 		
 		results.forEach(board -> System.out.println(board));
 	}
