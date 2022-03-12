@@ -74,5 +74,7 @@ class Boot03ApplicationTests {
 	public void testByTitleAndBno() {
 		
 		Collection<Board> results = repo.findByTitleContainingAndBnoGreaterThan("5", 50L);
+		
+		results.forEach(board -> System.out.println(board));
 	}
 }
