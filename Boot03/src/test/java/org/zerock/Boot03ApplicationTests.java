@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.zerock.domain.Board;
 import org.zerock.persistence.BoardRepository;
@@ -103,6 +104,15 @@ class Boot03ApplicationTests {
 		
 		Collection<Board> results = repo.findByBnoGreaterThanOrderByBnoDesc(0L, paging);
 		
+		results.forEach(board -> System.out.println(board));
+	}
+	
+	@Test
+	public void testBnoPagingSort() {
+		
+		Pageable paging = PageRequest.of(0, 10, Sort.Direction.ASC, "bno");
+		
+		Collection<Board> results = repo.findByBnoGreaterThan(0L, paging);
 		results.forEach(board -> System.out.println(board));
 	}
 }
